@@ -19,7 +19,6 @@ let productos = [
     {nombre: "Daiquiri",precio: "7000"}
 ]; 
 
-let carrito = []; 
 
 //--- Funcion que obtiene el carrito del LocalStorage, lo parsea a un array y lo retorna ---//
 function obtenerCarrito() 
@@ -43,6 +42,7 @@ function guardarCarrito(carrito)
 }
 
 //{'lko,iiklikujm,lujyhuy7jhhjgybjnbuujikilo,nuuj88u788ikjm,7u8op'´+¿'´´++ñpñlopo0988}  <-- codigo de Rubia
+
 function sumarAlCarrito(e){
 
     //--- Obtengo la referencia al elemento clickeado desde en base al evento (Propiedad exclusivamente de todos los Events) ---//
