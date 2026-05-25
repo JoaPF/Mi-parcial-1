@@ -35,10 +35,6 @@ function limpiar(){
 
 
 function crear(){
-    /**
-     * docu
-     * @returns {number}
-     */
     //chequeo si existe un carrito
     carrito = consulta();
 
