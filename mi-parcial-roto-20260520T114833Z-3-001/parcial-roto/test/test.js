@@ -35,19 +35,12 @@ function limpiar(){
 
 
 function crear(){
-    //chequeo si existe un carrito
-    carrito = consulta();
 
-    if (carrito == null){
-        carrito = [];
-        let carritoString = JSON.stringify(carrito);
-        localStorage.setItem('carrito', carritoString);
-        console.log("Array carrito creado");
-    }else{
-        console.log("Ya existe un carrito");
-        console.log(carrito);
+    carrito = [];
+    let carritoString = JSON.stringify(carrito);
+    localStorage.setItem('carrito', carritoString);
+    console.log("Array carrito creado");
 
-    }
 }
 
 function resta(){
