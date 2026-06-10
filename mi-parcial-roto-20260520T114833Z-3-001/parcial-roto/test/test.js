@@ -7,7 +7,8 @@ window.addEventListener("DOMContentLoaded", () =>
     const botonCrear =document.querySelectorAll("#btn-crear");
     const botonLimpiar =document.querySelectorAll("#btn-limpiar");
     const botonEliminar =document.querySelectorAll("#btn-eliminar");
-
+    const botonListar =document.querySelectorAll("#btn-lista");
+    
 
     botonSumar.forEach(btn => btn.addEventListener("click", sumar));
     botonRestar.forEach(btn => btn.addEventListener("click", resta));
@@ -15,11 +16,26 @@ window.addEventListener("DOMContentLoaded", () =>
     botonCrear.forEach(btn => btn.addEventListener("click", crear));
     botonLimpiar.forEach(btn => btn.addEventListener("click", limpiar));
     botonEliminar.forEach(btn => btn.addEventListener("click", eliminarLocal));
+    botonListar.forEach(btn => btn.addEventListener("click", listar));
 
 });
 
 //FALTA -> LISTAR PRODUCTOS DEL CARRITO EN UL
 
+function listar(){
+    carrito = obtener();
+
+    let listaHTML = "<ul> <h3>Producto | Cantidad</h3>";
+    carrito.forEach(carrito => {
+        listaHTML += `<li>${carrito.producto}  |  ${carrito.cantidad}</li>`;
+    });
+    listaHTML += "</ul>";
+    console.log(listaHTML);
+
+    let lista = document.getElementById("lista");
+    lista.innerHTML = (listaHTML);
+
+}
 
 function eliminarLocal(){
     localStorage.removeItem('carrito');

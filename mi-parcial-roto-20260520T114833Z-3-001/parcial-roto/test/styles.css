@@ -2,3 +2,24 @@ body{
     background-color: #161616;
     
 }
+
+#btn-consulta {
+    background-color: yellowgreen;
+}
+
+#btn-resta {
+    background-color: red;
+}
+
+#btn-eliminar {
+    background-color: darkred;
+    color: white;
+}
+
+#btn-lista {
+    background-color: darkkhaki;
+}
+
+#lista {
+    color: white;
+}
