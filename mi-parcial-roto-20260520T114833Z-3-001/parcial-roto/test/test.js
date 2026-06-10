@@ -18,24 +18,74 @@ window.addEventListener("DOMContentLoaded", () =>
 
 });
 
+//FALTA -> LISTAR PRODUCTOS DEL CARRITO EN UL
 
-//FALTA -> AGREGAR PRODUCTOS AL CARRITO, ELIMINAR PRODUCTOS DEL CARRITO, LISTAR PRODUCTOS DEL CARRITO EN UL
 
-//LISTO
 function eliminarLocal(){
     localStorage.removeItem('carrito');
     console.log("Datos locales eliminados")
 }
-//LISTO
-function limpiar(){
-    localStorage.setItem('carrito', '[]');
-    console.log("Carrito vaciado");
+
+function limpiar(){ 
+    let carrito = obtener();
+    if (carrito == null){
+        console.log("no se encontró el carrito");
+
+    }else{
+        localStorage.setItem('carrito', '[]');
+        console.log("Carrito vaciado");
+    }
 }
 
+function resta(){
+    let producto = "ProdB";
 
+    let carrito = obtener();
+    if (carrito == null){
+        console.log("no se encontró el carrito");
+
+    }else{
+        for(let i = 0; i < carrito.length; i++){
+            if(carrito[i].producto == producto){
+                //Si encuentro el producto, le resto 1 a la cantidad, si es 0 lo elimino del array
+                carrito[i].cantidad -= 1;
+                if(carrito[i].cantidad <= 0){
+                    carrito.splice([i],1);
+                };
+                break;
+            };
+        };
+        guardarCarrito(carrito);
+    }
+}
+
+function sumar(){
+    //let elementoClickeado = e.target;
+    let producto = "ProdB";
+
+    let carrito = obtener();
+    if (carrito == null){
+        console.log("no se encontró el carrito");
+
+    }else{
+        //busco si el producto ya existe y sumo 1 a la cantidad, sino, lo añado al array
+        let existe = false
+        for(let i = 0; i < carrito.length; i++){
+            if(carrito[i].producto == producto){
+                carrito[i].cantidad += 1;
+                existe = true;
+                break;
+            };
+        };
+        if(existe == false){
+            carrito.push({producto: producto, cantidad: 1});
+        };
+        guardarCarrito(carrito);
+    }
+}
 
 function crear(){
-    //chequeo si existe un carrito
+    //chequeo si existe un carrito, sino lo creo vacio
     carrito = obtener();
     if (carrito == null){
         console.log("no se encontró el carrito");
@@ -45,28 +95,18 @@ function crear(){
         console.log("Array carrito creado");
     }else{
         console.log("Ya existe un carrito");
-        console.log(carrito);
+        console.log(carrito);}
 }
 
-function resta(){
-    console.log("resta");
-}
+function guardarCarrito(carrito){
+    //solo guardo el carrito en local storage
 
-function sumar(){
-    /**
-     * docu
-     */
-    //let elementoClickeado = e.target;
-    
-    console.log();
-    let carrito = [{producto:"x", cantidad: 2}];
     let carritoString = JSON.stringify(carrito);
-    console.log(carritoString);
     localStorage.setItem('carrito', carritoString);
-    
 }
 
 function obtener(){
+    //SOLO consulta por el carrito en local storage y lo retorna
     /*
     antes de parsear:  [{"producto":"x","cantidad":1}]
     depues de parsear:  
@@ -82,20 +122,17 @@ function obtener(){
 }
 
 function consulta(){
+    //Solo para imprimir el carrito en consola
     carrito = obtener();
 
     if (carrito == null){
-        console.log("no se encontró el carrito /creando carrito ");
-        crear();
-        console.log("================================\n            CARRITO\n================================\n",carrito);
+        console.log("no se encontró el carrito");
 
-        return carrito;
     }else{
         console.log("carrito cargado con exito");
         console.log("================================\n            CARRITO\n================================\n","cantidad de productos:",carrito.length,"\n",carrito);
         
         for (let i = 0; i < carrito.length; i++) {
-            console.log(carrito[i]);
             console.log(carrito[i].producto,carrito[i].cantidad);
         };
         
