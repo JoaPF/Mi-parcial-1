@@ -20,7 +20,6 @@ window.addEventListener("DOMContentLoaded", () =>
 
 });
 
-//FALTA -> LISTAR PRODUCTOS DEL CARRITO EN UL
 
 function listar(){
     carrito = obtener();
